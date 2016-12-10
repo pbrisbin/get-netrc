@@ -18,7 +18,7 @@ Available fields: Name, Login, Password, Account
 ## Output Format
 
 If there is exactly one result and you're outputting exactly one field, the
-value is printed unadorned. This is to support this tools primary use-case:
+value is printed unadorned. This is to support this tool's primary use-case:
 reading passwords into other tools. Otherwise each field is shown as a single
 line of the form `Field: value`
 
