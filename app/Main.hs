@@ -7,4 +7,4 @@ import Lib.Options
 main :: IO ()
 main = do
     opts <- parseOptions
-    putStrLn $ formatOutput $ getNetRc opts
+    putStr $ formatOutput $ getNetRc opts
