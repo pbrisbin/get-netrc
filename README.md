@@ -36,6 +36,11 @@ machine N
 
 **NOTE**: The numbers have no meaning, they're just indexes in the result list.
 
+## GnuPG
+
+`get-netrc PATH` will check for `PATH.gpg`. If found, it will invoke `gpg
+--decrypt` and operate on its contents instead.
+
 ## Install
 
 ```

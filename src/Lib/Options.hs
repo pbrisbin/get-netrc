@@ -4,11 +4,13 @@ module Lib.Options
     ) where
 
 import Lib.Types
+import Lib.GPG
 
 import Data.List (intercalate)
 import Options.Applicative
-import System.FilePath ((</>))
+import System.FilePath ((</>), (<.>))
 import System.Environment (getEnv)
+import System.Directory (doesFileExist)
 import Text.Read (readMaybe)
 
 import qualified Data.ByteString as BS
@@ -22,7 +24,11 @@ data Opts = Opts
 toOptions :: Opts -> IO Options
 toOptions Opts{..} = do
     path <- maybe (pathInHome ".netrc") return oFilePath'
-    contents <- BS.readFile path
+    let gpgPath = path <.> "gpg"
+    gpgExists <- doesFileExist gpgPath
+    contents <- if gpgExists
+        then decryptFile [] gpgPath
+        else BS.readFile path
 
     return Options
         { oFilePath = path
