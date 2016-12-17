@@ -50,19 +50,19 @@ parseOptions = toOptions =<< execParser
 
 parser :: Parser Opts
 parser = Opts
-    <$> (many $ option auto
+    <$> many (option auto
         (  short 'o'
         <> long "output"
         <> metavar "Field"
         <> help "Fields to output"
         ))
-    <*> (many $ option (eitherReader parseFilter)
+    <*> many (option (eitherReader parseFilter)
         (  short 'f'
         <> long "filter"
         <> metavar "Field=value"
         <> help "Filter the machines returned"
         ))
-    <*> (optional $ argument auto
+    <*> optional (argument auto
         (  metavar "PATH"
         <> help "Alternate path to ~/.netrc"
         ))
