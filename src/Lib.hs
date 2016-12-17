@@ -31,7 +31,7 @@ matchesFilter h (Filter f v) = accessField f h == v
 valueAtField :: NetRcHost -> Field -> Value
 valueAtField h f = Value f $ accessField f h
 
-accessField :: Field -> (NetRcHost -> String)
+accessField :: Field -> NetRcHost -> String
 accessField Name = C8.unpack . nrhName
 accessField Login = C8.unpack . nrhLogin
 accessField Password = C8.unpack . nrhPassword
