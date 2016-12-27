@@ -9,7 +9,7 @@ import qualified Data.ByteString.Char8 as C8
 
 main :: IO ()
 main = hspec $ describe "get-netrc" $ do
-    it "parses and empty file correctly" $ do
+    it "parses an empty file correctly" $ do
         let options = Options
                 { oFilePath = "test"
                 , oFileContents = ""
