@@ -14,7 +14,7 @@ main :: IO ()
 main = hspec spec
 
 spec :: Spec
-spec = describe "get-netrc" $ do
+spec = describe "getNetRc" $ do
     it "parses an empty file correctly" $ do
         let options = Options
                 { oFilePath = "test"
