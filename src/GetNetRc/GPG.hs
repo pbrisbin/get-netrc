@@ -1,4 +1,4 @@
-module Lib.GPG
+module GetNetRc.GPG
     ( decryptFile
     ) where
 

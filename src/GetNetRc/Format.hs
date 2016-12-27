@@ -1,8 +1,8 @@
-module Lib.Format
+module GetNetRc.Format
     ( formatOutput
     ) where
 
-import Lib.Types
+import GetNetRc.Types
 
 formatOutput :: Output -> String
 formatOutput (Error msg) = "error: " ++ msg ++ "\n"

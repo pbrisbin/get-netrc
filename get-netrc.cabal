@@ -16,11 +16,11 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src
   ghc-options:         -Wall -Werror
-  exposed-modules:     Lib
-                       Lib.Format
-                       Lib.GPG
-                       Lib.Options
-                       Lib.Types
+  exposed-modules:     GetNetRc
+                       GetNetRc.Format
+                       GetNetRc.GPG
+                       GetNetRc.Options
+                       GetNetRc.Types
   build-depends:       base >= 4.7 && < 5
                      , bytestring
                      , directory

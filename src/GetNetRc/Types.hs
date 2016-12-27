@@ -1,4 +1,4 @@
-module Lib.Types
+module GetNetRc.Types
     ( Options(..)
     , Field(..)
     , Filter(..)

@@ -1,12 +1,12 @@
 {-# LANGUAGE RecordWildCards #-}
-module Lib
+module GetNetRc
     ( Options(..)
     , Field(..)
     , Filter(..)
     , getNetRc
     ) where
 
-import Lib.Types
+import GetNetRc.Types
 import Network.NetRc (NetRc(..), NetRcHost(..), parseNetRc)
 
 import qualified Data.ByteString.Char8 as C8

@@ -1,10 +1,10 @@
 {-# LANGUAGE RecordWildCards #-}
-module Lib.Options
+module GetNetRc.Options
     ( parseOptions
     ) where
 
-import Lib.Types
-import Lib.GPG
+import GetNetRc.Types
+import GetNetRc.GPG
 
 import Data.List (intercalate)
 import Options.Applicative

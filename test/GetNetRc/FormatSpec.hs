@@ -1,10 +1,10 @@
-module Lib.FormatSpec
+module GetNetRc.FormatSpec
     ( main
     , spec
     ) where
 
-import Lib.Format
-import Lib.Types
+import GetNetRc.Format
+import GetNetRc.Types
 import Test.Hspec
 
 main :: IO ()

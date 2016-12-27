@@ -1,11 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
-module LibSpec
+module GetNetRcSpec
     ( main
     , spec
     ) where
 
-import Lib
-import Lib.Types
+import GetNetRc
+import GetNetRc.Types
 import Test.Hspec
 
 import qualified Data.ByteString.Char8 as C8
