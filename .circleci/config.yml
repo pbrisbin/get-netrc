@@ -4,11 +4,15 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: fpco/stack-build:lts
+      # https://github.com/haskell-works/stack-build/blob/master/minimal/Dockerfile
+      - image: quay.io/haskell_works/stack-build-minimal
     environment:
       STACK_ARGUMENTS: --no-terminal
     steps:
       - checkout
+      - run:
+          name: Upgrade Stack
+          command: stack upgrade
       - run:
           name: Digest
           command: git ls-files | xargs md5sum > digest
