@@ -6,24 +6,21 @@ module GetNetRc
     , getNetRc
     ) where
 
+import qualified Data.ByteString.Char8 as C8
 import GetNetRc.Types
 import Network.NetRc (NetRc(..), NetRcHost(..), parseNetRc)
 
-import qualified Data.ByteString.Char8 as C8
-
 getNetRc :: Options -> Output
-getNetRc Options{..} = either
-    (Error . show)
-    (filterOutput oOutputFields . findHosts oFilters)
-    $ parseNetRc oFilePath oFileContents
+getNetRc Options {..} =
+    either (Error . show) (filterOutput oOutputFields . findHosts oFilters)
+        $ parseNetRc oFilePath oFileContents
 
 findHosts :: [Filter] -> NetRc -> [NetRcHost]
 findHosts fs = filter (\h -> all (matchesFilter h) fs) . nrHosts
 
 filterOutput :: [Field] -> [NetRcHost] -> Output
 filterOutput fs = MachineValues . map valuesAtFields
-  where
-    valuesAtFields h = map (valueAtField h) fs
+    where valuesAtFields h = map (valueAtField h) fs
 
 matchesFilter :: NetRcHost -> Filter -> Bool
 matchesFilter h (Filter f v) = accessField f h == v

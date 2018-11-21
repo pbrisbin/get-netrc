@@ -3,17 +3,15 @@ module GetNetRc.Options
     ( parseOptions
     ) where
 
-import GetNetRc.Types
-import GetNetRc.GPG
-
-import Data.List (intercalate)
-import Options.Applicative
-import System.FilePath ((</>), (<.>))
-import System.Environment (getEnv)
-import System.Directory (doesFileExist)
-import Text.Read (readMaybe)
-
 import qualified Data.ByteString as BS
+import Data.List (intercalate)
+import GetNetRc.GPG
+import GetNetRc.Types
+import Options.Applicative
+import System.Directory (doesFileExist)
+import System.Environment (getEnv)
+import System.FilePath ((<.>), (</>))
+import Text.Read (readMaybe)
 
 data Opts = Opts
     { oOutputFields' :: [Field]
@@ -22,13 +20,11 @@ data Opts = Opts
     }
 
 toOptions :: Opts -> IO Options
-toOptions Opts{..} = do
+toOptions Opts {..} = do
     path <- maybe (pathInHome ".netrc") return oFilePath'
     let gpgPath = path <.> "gpg"
     gpgExists <- doesFileExist gpgPath
-    contents <- if gpgExists
-        then decryptFile [] gpgPath
-        else BS.readFile path
+    contents <- if gpgExists then decryptFile [] gpgPath else BS.readFile path
 
     return Options
         { oFilePath = path
@@ -40,13 +36,13 @@ toOptions Opts{..} = do
 parseOptions :: IO Options
 parseOptions = toOptions =<< execParser
     (info (helper <*> parser)
-        $  fullDesc
-        <> progDesc "Read credentials out of ~/.netrc"
-        <> footer ("Available fields: " ++ intercalate ", " allFields)
-        )
+    $ fullDesc
+    <> progDesc "Read credentials out of ~/.netrc"
+    <> footer ("Available fields: " ++ intercalate ", " allFields)
+    )
+    where allFields = map show ([minBound .. maxBound] :: [Field])
 
-  where
-    allFields = map show ([minBound..maxBound] :: [Field])
+-- brittany-disable-next-binding
 
 parser :: Parser Opts
 parser = Opts
@@ -69,7 +65,8 @@ parser = Opts
 
 parseFilter :: String -> Either String Filter
 parseFilter x =
-    let err = Left $ "Invalid filter " ++ x
+    let
+        err = Left $ "Invalid filter " ++ x
         fld = takeWhile (/= '=') x
         val = drop 1 $ dropWhile (/= '=') x
     in maybe err (\n -> Right $ Filter n val) $ readMaybe fld
