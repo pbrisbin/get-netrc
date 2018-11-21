@@ -1,22 +1,19 @@
 {-# LANGUAGE OverloadedStrings #-}
+
 module GetNetRcSpec
-    ( main
-    , spec
+    ( spec
     ) where
 
+import qualified Data.ByteString.Char8 as C8
 import GetNetRc
 import GetNetRc.Types
 import Test.Hspec
 
-import qualified Data.ByteString.Char8 as C8
-
-main :: IO ()
-main = hspec spec
-
 spec :: Spec
 spec = describe "getNetRc" $ do
     it "parses an empty file correctly" $ do
-        let options = Options
+        let
+            options = Options
                 { oFilePath = "test"
                 , oFileContents = ""
                 , oFilters = []
@@ -26,7 +23,8 @@ spec = describe "getNetRc" $ do
         getNetRc options `shouldBe` MachineValues []
 
     it "parses a single password by machine" $ do
-        let options = Options
+        let
+            options = Options
                 { oFilePath = "test"
                 , oFileContents = C8.unlines
                     [ "machine gmail.com"
@@ -43,7 +41,8 @@ spec = describe "getNetRc" $ do
         getNetRc options `shouldBe` MachineValues [[Value Password "secret"]]
 
     it "parses multiple machines for multiple fields" $ do
-        let options = Options
+        let
+            options = Options
                 { oFilePath = "test"
                 , oFileContents = C8.unlines
                     [ "machine gmail.com"
@@ -70,10 +69,7 @@ spec = describe "getNetRc" $ do
         let options = Options
                 { oFilePath = "test"
                 , oFileContents = C8.unlines
-                    [ "floppity"
-                    , "gibberish foo"
-                    , "bar"
-                    ]
+                    ["floppity", "gibberish foo", "bar"]
                 , oFilters = []
                 , oOutputFields = []
                 }

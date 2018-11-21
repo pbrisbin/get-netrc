@@ -1,0 +1,56 @@
+name: get-netrc
+version: 0.1.0.0
+synopsis: Read values out of ~/.netrc
+description: Please see README.md
+category: Tools
+author: Pat Brisbin
+maintainer: pbrisbin@gmail.com
+copyright: 2018 Pat Brisbin
+license: MIT
+github: pbrisbin/get-netrc
+
+extra-source-files:
+  - README.md
+  - CHANGELOG.md
+
+ghc-options:
+  - -Wall
+  - -Werror
+
+dependencies:
+  - base >=4.7 && <5
+
+library:
+  source-dirs: src
+  dependencies:
+    - bytestring
+    - directory
+    - filepath
+    - netrc
+    - optparse-applicative
+    - process
+
+executables:
+  get-netrc:
+    main: Main.hs
+    source-dirs: app
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+
+    dependencies:
+      - get-netrc
+
+tests:
+  test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - bytestring
+      - get-netrc
+      - hspec

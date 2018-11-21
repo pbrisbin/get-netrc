@@ -48,3 +48,7 @@ git clone https://github.com/pbrisbin/get-netrc
 cd get-netrc
 stack install
 ```
+
+---
+
+[LICENSE][./LICENSE] | [CHANGELOG][./CHANGELOG.md]
