@@ -3,9 +3,10 @@ module GetNetRc.GPG
     ) where
 
 import Data.ByteString (ByteString)
+import qualified Data.ByteString.Char8 as C8
 import System.Process (readProcess)
 
-import qualified Data.ByteString.Char8 as C8
+-- brittany-disable-next-binding
 
 decryptFile :: [String] -> FilePath -> IO ByteString
 decryptFile options input = gpg $ options ++
