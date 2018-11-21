@@ -51,4 +51,4 @@ stack install
 
 ---
 
-[LICENSE][./LICENSE] | [CHANGELOG][./CHANGELOG.md]
+[LICENSE](./LICENSE) | [CHANGELOG](./CHANGELOG.md])
